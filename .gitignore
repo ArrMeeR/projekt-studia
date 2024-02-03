@@ -12,3 +12,8 @@
 /public/assets/
 /assets/vendor
 ###< symfony/asset-mapper ###
+
+###> project ###
+.idea
+.DS_Store
+###< project ###
