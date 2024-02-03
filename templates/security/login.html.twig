@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Tłiter{% endblock %}</title>
+        {% block javascripts %}
+            {{ importmap('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <div class="text-center mt-5">
+                <h1>Logowanie</h1>
+                <div class="card w-50 mx-auto mt-3">
+                    <div class="card-body">
+                        <div class="card-text text-start">
+                            {% if error %}
+                                <div class="alert alert-danger mb-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            <form action="{{ path('login') }}" method="POST">
+                                <div class="mb-3">
+                                    <label class="form-label">Nazwa użytkownika lub adres e-email</label>
+                                    <input type="text" name="_username" value="{{ lastUsername }}" class="form-control" placeholder="jan.kowalski@poczta.pl">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Hasło</label>
+                                    <input type="password" name="_password" class="form-control" placeholder="•••••••••">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Zaloguj</button>
+                                </div>
+                                <div class="text-center">lub <a href="{{ path('signup') }}">utwórz nowe konto</a></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

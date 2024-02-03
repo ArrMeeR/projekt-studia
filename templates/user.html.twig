@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="card" id="user-page" data-username="{{ user.username }}">
+        <div class="card-body">
+            <div class="card-text">
+                <div class="d-flex align-items-center">
+                    <div class="fw-bold me-3">@{{ user.username }}</div>
+                    {% if user.username != app.user.username %}
+                        <button class="btn btn-outline-light btn-sm app-follow-user">
+                            {{ user.followers.contains(app.user) ? 'Przestań obserwować' : 'Obserwuj' }}
+                        </button>
+                    {% endif %}
+                </div>
+                {% if user.about is not empty %}
+                    <p class="m-0 mt-2">{{ user.about }}</p>
+                {% endif %}
+                <div class="d-flex mt-2">
+                    <div class="me-3"><span class="fw-bold app-followers-count">{{ user.followers.count }}</span> <span class="text-muted">obserwujących</span></div>
+                    <div><span class="fw-bold">{{ user.following.count }}</span> <span class="text-muted">obserwowanych</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs nav-fill mt-3">
+        <li class="nav-item">
+            <button class="nav-link active" id="user-posts-tab" data-bs-toggle="tab" data-bs-target="#user-posts" type="button">Posty</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="user-liked-posts-tab" data-bs-toggle="tab" data-bs-target="#user-liked-posts" type="button">Polubione posty</button>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="user-posts">
+            <div class="text-center mt-3 mb-3">
+                <div class="spinner-border app-user-posts-loader">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="posts"></div>
+            <div class="text-center mt-2">
+                <div class="spinner-border app-more-posts-loader d-none">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <button class="btn btn-primary app-load-more-posts">Załaduj więcej</button>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="user-liked-posts">
+            <div class="text-center mt-3 mb-3">
+                <div class="spinner-border app-user-liked-posts-loader">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="posts"></div>
+            <div class="text-center mt-2">
+                <div class="spinner-border app-more-posts-loader d-none">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <button class="btn btn-primary app-load-more-posts">Załaduj więcej</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

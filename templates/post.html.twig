@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="card-title d-flex justify-content-between">
+                <div class="fw-bold"><a class="text-decoration-none text-body" href="/users/{{ post.user.username }}">@{{ post.user.username }}</a></div>
+                <div class="fw-lighter fst-italic">{{ post.createdAt|date('d.m') }}</div>
+            </div>
+            <div class="card-text">{{ post.content }}</div>
+            <div class="d-flex mt-3 app-post-reactions">
+                <a href="{{ path('get_post', {id: post.id}) }}">
+                    <div class="me-3 app-post-comments"><i class="bi bi-chat-fill me-1"></i> {{ post.comments.count }}</div>
+                </a>
+                <a class="app-like-post" href="javascript:void(0)" data-id="{{ post.id }}">
+                    <div class="app-post-likes"><i class="bi bi-heart{{post.likes.contains(app.user) ? '-fill text-danger' : ''}} me-1"></i> {{ post.likes.count }}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="app-add-comment">
+
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+.app-menu a {
+    color: var(--bs-card-color);
+    text-decoration: none;
+}
+
+.app-menu-item {
+    padding: 5px;
+}
+
+.app-menu-item:hover {
+    background: var(--bs-secondary-bg);
+    border-radius: 25px;
+}
+
+.app-popular-tags a {
+    text-decoration: none;
+}
+
+.app-popular-tag:hover {
+    background: var(--bs-secondary-bg);
+}
+
+.app-post-reactions a {
+    color: var(--bs-card-color);
+    text-decoration: none;
+}
+
+.app-post-comments:hover {
+    color: var(--bs-primary)
+}
+
+.app-post-likes:hover {
+    color: var(--bs-danger)
+}
+
+#app-search-results {
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    left: 0;
+    width: 310px;
+    -webkit-box-shadow: 8px 8px 36px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 8px 36px 0px rgba(66, 68, 90, 1);
+    box-shadow: 8px 8px 36px 0px rgba(66, 68, 90, 1);
+}
+
+#app-search-results a {
+    text-decoration: none;
+}

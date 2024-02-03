@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Tłiter{% endblock %}</title>
+        {% block javascripts %}
+            {{ importmap('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <h2>Tłiter 🐥</h2>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 col-lg-3">
+                    <div class="card app-menu">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <a href="{{ path('index') }}">
+                                    <div class="mb-3 fs-5 app-menu-item {{ app.current_route == 'index' ? 'fw-bold' : '' }}"><i class="bi bi-house-fill me-3"></i> Strona główna</div>
+                                </a>
+                                <a href="{{ path('get_user', {username: app.user.username}) }}">
+                                    <div class="mb-3 fs-5 app-menu-item {{ app.current_route == 'get_user' and app.current_route_parameters.username == app.user.username ? 'fw-bold' : '' }}"><i class="bi bi-person-fill me-3"></i> Mój profil</div>
+                                </a>
+                                <a href="{{ path('_logout_main') }}">
+                                    <div class="fs-5 app-menu-item"><i class="bi bi-door-closed-fill me-3"></i> Wyloguj się</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">{% block content %}{% endblock %}</div>
+                <div class="col-12 col-lg-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input id="app-search" type="text" class="form-control" placeholder="Szukaj">
+                        <div id="app-search-results" class="d-none">
+                            <ul class="list-group">
+                                <li class="list-group-item">#test</li>
+                                <li class="list-group-item">@test</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mt-3 app-popular-tags">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p class="m-0 fs-5 fw-bold">Popularne tagi</p>
+                                <ul class="list-group list-group-flush mt-3">
+                                    {% for tag in popularTags %}
+                                        <a href="/tags/{{ tag.tag }}">
+                                            <li class="list-group-item app-popular-tag">{{ tag.rank }}. #{{ tag.tag }} <span class="badge rounded-pill bg-secondary">{{ tag.postsCount }}</span></li>
+                                        </a>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

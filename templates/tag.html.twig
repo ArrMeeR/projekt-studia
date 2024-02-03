@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="fs-5 fw-bold" id="tag-page" data-tag="{{ tag.tag }}">#{{ tag.tag }}</div>
+    <hr>
+    <div class="text-center app-loader">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div class="app-posts mt-3" id="tag-page"></div>
+    <div class="text-center mt-2">
+        <div class="spinner-border app-more-posts-loader d-none" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <button class="btn btn-primary app-load-more-posts">Załaduj więcej</button>
+    </div>
+{% endblock %}

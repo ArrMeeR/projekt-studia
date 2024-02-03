@@ -1,0 +1,29 @@
+services:
+    php:
+        build:
+            dockerfile: docker/php/Dockerfile
+            context: .
+        volumes:
+            - .:/app
+
+    nginx:
+        image: nginx:alpine
+        ports:
+            - "8080:80"
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+    mariadb:
+        image: mariadb:10.11
+        environment:
+            MARIADB_USER: app
+            MARIADB_PASSWORD: app
+            MARIADB_DATABASE: app
+            MARIADB_ROOT_PASSWORD: root
+        volumes:
+            - mariadb:/var/lib/mysql
+        ports:
+            - "3306:3306"
+
+volumes:
+    mariadb:
